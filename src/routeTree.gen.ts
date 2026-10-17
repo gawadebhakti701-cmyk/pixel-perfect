@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as FareRouteImport } from './routes/fare'
+import { Route as RoutesRouteImport } from './routes/routes'
+import { Route as StopsRouteImport } from './routes/stops'
+import { Route as TransportRouteImport } from './routes/transport'
+import { Route as RouteRouteIdRouteImport } from './routes/route.$routeId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FareRoute = FareRouteImport.update({
+  id: '/fare',
+  path: '/fare',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoutesRoute = RoutesRouteImport.update({
+  id: '/routes',
+  path: '/routes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StopsRoute = StopsRouteImport.update({
+  id: '/stops',
+  path: '/stops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransportRoute = TransportRouteImport.update({
+  id: '/transport',
+  path: '/transport',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RouteRouteIdRoute = RouteRouteIdRouteImport.update({
+  id: '/route/$routeId',
+  path: '/route/$routeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/fare': typeof FareRoute
+  '/routes': typeof RoutesRoute
+  '/stops': typeof StopsRoute
+  '/transport': typeof TransportRoute
+  '/route/$routeId': typeof RouteRouteIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/fare': typeof FareRoute
+  '/routes': typeof RoutesRoute
+  '/stops': typeof StopsRoute
+  '/transport': typeof TransportRoute
+  '/route/$routeId': typeof RouteRouteIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/fare': typeof FareRoute
+  '/routes': typeof RoutesRoute
+  '/stops': typeof StopsRoute
+  '/transport': typeof TransportRoute
+  '/route/$routeId': typeof RouteRouteIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/fare' | '/routes' | '/stops' | '/transport' | '/route/$routeId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/fare' | '/routes' | '/stops' | '/transport' | '/route/$routeId'
+  id:
+    | '__root__'
+    | '/'
+    | '/fare'
+    | '/routes'
+    | '/stops'
+    | '/transport'
+    | '/route/$routeId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FareRoute: typeof FareRoute
+  RoutesRoute: typeof RoutesRoute
+  StopsRoute: typeof StopsRoute
+  TransportRoute: typeof TransportRoute
+  RouteRouteIdRoute: typeof RouteRouteIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/fare': {
+      id: '/fare'
+      path: '/fare'
+      fullPath: '/fare'
+      preLoaderRoute: typeof FareRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/routes': {
+      id: '/routes'
+      path: '/routes'
+      fullPath: '/routes'
+      preLoaderRoute: typeof RoutesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stops': {
+      id: '/stops'
+      path: '/stops'
+      fullPath: '/stops'
+      preLoaderRoute: typeof StopsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transport': {
+      id: '/transport'
+      path: '/transport'
+      fullPath: '/transport'
+      preLoaderRoute: typeof TransportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/route/$routeId': {
+      id: '/route/$routeId'
+      path: '/route/$routeId'
+      fullPath: '/route/$routeId'
+      preLoaderRoute: typeof RouteRouteIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FareRoute: FareRoute,
+  RoutesRoute: RoutesRoute,
+  StopsRoute: StopsRoute,
+  TransportRoute: TransportRoute,
+  RouteRouteIdRoute: RouteRouteIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
