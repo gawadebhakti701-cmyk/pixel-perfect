@@ -5,7 +5,7 @@ import { PageHeader, RouteCard, LocationSelect, CrowdBadge, Note, CROWD_NOTE, FA
 import { useAssistant, useAssistantContext } from "@/components/site/Assistant";
 import {
   MODES, PREFERENCES, formatFare, formatTime, isLocation, isMode, isPreference, journeyRoutes, recommend,
-  recommendReason, sortByPreference, LOCATIONS, type Mode, type Preference,
+  recommendReason, sortByPreference, type Mode, type Preference,
 } from "@/lib/transit-data";
 
 type S = { from?: string; to?: string; pref?: Preference; mode?: Mode };
@@ -143,7 +143,6 @@ function FarePage() {
           </>
         )}
         <div className="space-y-2"><Note>{FARE_NOTE}</Note><Note>{CROWD_NOTE}</Note></div>
-        <span hidden>{LOCATIONS.length}</span>
       </div>
     </>
   );

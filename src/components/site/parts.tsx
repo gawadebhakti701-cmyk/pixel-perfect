@@ -80,7 +80,7 @@ export function RouteCard({ r, highlight, label }: { r: TransitRoute; highlight?
       <p className="text-sm"><span className="font-semibold">Stops: </span>{r.stops.join(" → ")}</p>
       <RouteStats r={r} />
       <Button asChild variant={highlight ? "default" : "outline"} className="mt-auto self-start">
-        <Link to="/route/$routeId" params={{ routeId: r.id }} search={r.origin !== undefined ? { from: r.origin } : {}}>
+        <Link to="/route/$routeId" params={{ routeId: r.id }} search={{ from: r.origin }}>
           View Route <ArrowRight />
         </Link>
       </Button>
